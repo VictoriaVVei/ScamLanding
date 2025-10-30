@@ -19,7 +19,6 @@ export function LandingPage() {
         icon2: false,
         icon3: false,
         icon4: false,
-        icon5: false
     });
     const [mockImgs, setMockImgs] = useState([
         "/img/Storyboard1.jpg",
@@ -266,35 +265,29 @@ export function LandingPage() {
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <svg t="1761800988529" className={`${styles.icon} ${visibleSections.icon3 ? styles.visible : ''}`} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1666" width="50" height="50">
                         <path d="M762 512L512 912 262 512l250-400z" p-id="1667"></path>
                     </svg>
                 </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", width: "95%", margin: "auto" }}>
+                    <div className={`${styles.intro4} ${visibleSections.intro4 ? styles.visible : ''}`} style={{ textAlign: "center" }}>
+                        <h1>Cases</h1>
+                        <div className={styles.intro1_2}>
+                            <FinalGallery imgset={mockImgs} openSmall={false} themeColor='black' />
+                        </div>
+                    </div>
 
-                <div className={`${styles.intro4} ${visibleSections.intro4 ? styles.visible : ''}`} style={{ textAlign: "center" }}>
-                    <h1>Cases</h1>
-                    <div className={styles.intro1_2}>
-                        <FinalGallery imgset={mockImgs} openSmall={false} themeColor='black' />
+                    <div className={`${styles.intro5} ${visibleSections.intro5 ? styles.visible : ''}`} style={{ textAlign: "center" }}>
+                        <h1>Demo Video</h1>
+                        <div>
+                            <iframe width="100%" style={{ aspectRatio: "20/18" }} src="https://www.youtube.com/embed/Ukol4wwkem8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                        </div>
                     </div>
                 </div>
 
                 <div>
                     <svg t="1761800988529" className={`${styles.icon} ${visibleSections.icon4 ? styles.visible : ''}`} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1666" width="50" height="50">
-                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667"></path>
-                    </svg>
-                </div>
-
-                <div className={`${styles.intro5} ${visibleSections.intro5 ? styles.visible : ''}`} style={{ textAlign: "center" }}>
-                    <h1>Demo Video</h1>
-                    <div>
-                        <iframe width="1000" height="600" src="https://www.youtube.com/embed/Ukol4wwkem8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                    </div>
-                </div>
-
-                <div>
-                    <svg t="1761800988529" className={`${styles.icon} ${visibleSections.icon5 ? styles.visible : ''}`} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1666" width="50" height="50">
                         <path d="M762 512L512 912 262 512l250-400z" p-id="1667"></path>
                     </svg>
                 </div>
