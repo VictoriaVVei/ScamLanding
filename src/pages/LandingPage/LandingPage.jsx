@@ -198,7 +198,7 @@ export function LandingPage() {
             <main>
                 <div>
                     <svg t="1761800988529" className={`${styles.icon} ${visibleSections.icon1 ? styles.visible : ''}`} style={{ opacity: "1" }} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1666" width="50" height="50">
-                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667"></path>
+                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667" fill="white"></path>
                     </svg>
                 </div>
                 <div className={`${styles.intro1} ${visibleSections.intro1 ? styles.visible : ''}`} >
@@ -236,7 +236,7 @@ export function LandingPage() {
 
                 <div>
                     <svg t="1761800988529" className={`${styles.icon} ${visibleSections.icon2 ? styles.visible : ''}`} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1666" width="50" height="50">
-                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667"></path>
+                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667" fill="white"></path>
                     </svg>
                 </div>
 
@@ -267,10 +267,19 @@ export function LandingPage() {
                 </div>
                 <div>
                     <svg t="1761800988529" className={`${styles.icon} ${visibleSections.icon3 ? styles.visible : ''}`} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1666" width="50" height="50">
-                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667"></path>
+                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667" fill="white"></path>
                     </svg>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", width: "95%", margin: "auto" }}>
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: "20px", width: "95%",
+                        margin: "auto",
+                        backgroundColor: "white",
+                        borderRadius: "10px",
+                        padding: "10px",
+                    }}>
                     <div className={`${styles.intro4} ${visibleSections.intro4 ? styles.visible : ''}`} style={{ textAlign: "center" }}>
                         <h1>Cases</h1>
                         <div className={styles.intro1_2}>
@@ -288,7 +297,7 @@ export function LandingPage() {
 
                 <div>
                     <svg t="1761800988529" className={`${styles.icon} ${visibleSections.icon4 ? styles.visible : ''}`} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1666" width="50" height="50">
-                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667"></path>
+                        <path d="M762 512L512 912 262 512l250-400z" p-id="1667" fill="white"></path>
                     </svg>
                 </div>
 
