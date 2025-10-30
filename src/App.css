@@ -1,0 +1,36 @@
+/* ------- */
+/* Overall */
+/* ------- */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+*::-webkit-scrollbar-thumb {
+  width: 0px;
+  height: 0px;
+}
+
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+}

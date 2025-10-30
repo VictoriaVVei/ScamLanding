@@ -1,0 +1,286 @@
+/* ------- */
+/* landing */
+/* ------- */
+#landing {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+#landing .welcome_board {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    z-index: 10;
+    transition: height 0.3s ease;
+    overflow: hidden;
+    margin-bottom: 100px;
+    pointer-events: none;
+}
+
+.welcome_board_scrolled {
+    height: 50px !important;
+}
+
+.Galaxy_container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    /* position: relative; */
+    z-index: 0;
+    transition: height 0.3s ease;
+}
+
+#landing .welcome_content {
+    position: absolute;
+    left: 150px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+    pointer-events: none;
+}
+
+.welcome_content_scrolled {
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+#landing .welcome_board .word {
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#landing .welcome_board .word h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+#landing .welcome_board .word p {
+    font-size: 1.25rem;
+    width: 800px;
+    margin-top: 150px;
+}
+
+.buttonContainer {
+    margin-top: 10px;
+    display: flex;
+    gap: 30px;
+    opacity: 0;
+    pointer-events: none;
+    animation: fadeIn2 2s forwards;
+    animation-delay: 0.5s;
+}
+
+#landing .buttonContainer .button {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    min-width: 200px;
+    color: #000000;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+@keyframes fadeIn2 {
+    0% {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    100% {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+}
+
+#landing main {
+    background-color: white;
+    width: 90vw;
+    max-width: 1600px;
+    margin: auto;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    border-radius: 10px;
+    z-index: 1;
+    transition: 0.3s;
+    margin-top: 100px;
+}
+
+.intro1 {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(2,1fr);
+    gap: 30px;
+    width: 95%;
+    margin: auto;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.intro1_1 {
+    display: flex;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+}
+
+.intro1_2 {
+    margin: auto;
+    width: 50%;
+    height: auto;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.intro2 {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.intro2.visible {
+    opacity: 1;
+}
+
+.intro2_1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+}
+
+.intro2_1 div {
+    /* width: 300px; */
+    background-color: #000000;
+    color: white;
+    margin: 10px;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 300px;
+    height: 300px;
+}
+
+.intro3 {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.intro3.visible {
+    opacity: 1;
+}
+
+.intro3_1 {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.intro3_1_1 {
+    margin: 10px;
+}
+
+.intro3_1_1 img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.intro4 {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.intro4.visible {
+    opacity: 1;
+}
+
+.intro4_1 {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.intro4_1_1 {
+    grid-column: 3;
+}
+
+.intro4_1_1 img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+/* decro */
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+}
+
+.logo img {
+    width: 120px;
+    aspect-ratio: 1/1;
+}
+
+.logo_scrolled {
+    position: fixed;
+    top: -15px;
+    right: 50%;
+    transform: translateX(50%) scale(0.5);
+    transition: transform 0.3s ease, top 0.5s ease, right 0.5s ease;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.intro5 {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.intro5.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.icon {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 50px 0;
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.icon.visible {
+    opacity: 1;
+}
