@@ -103,6 +103,14 @@
     background-color: white;
     padding: 20px;
     border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid white;
+}
+
+#landing .buttonContainer .button:hover {
+    background-color: transparent;
+    color: white;
 }
 
 @keyframes fadeIn2 {
@@ -134,7 +142,7 @@
 .intro1 {
     display: grid;
     grid-template-rows: auto auto auto;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     width: 95%;
     margin: auto;
@@ -186,6 +194,10 @@
     height: 300px;
 }
 
+.intro2_1 img {
+    border-radius: 50%;
+}
+
 .intro3 {
     opacity: 0;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -234,6 +246,98 @@
     width: 150px;
     height: 150px;
 }
+
+.input_area_fullScreen {
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    transition: 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.input_area_background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: tr;
+}
+
+.input_area_container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    min-height: 300px;
+    min-width: 400px;
+    border: 1px solid white;
+}
+
+.input_area_content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+.input_area_content form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input_area_content input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 16px;
+}
+
+.close_button {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close_button:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.submitButton {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid white;
+}
+
+.submitButton:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 1px solid black;
+}
+
+
 
 /* decro */
 .logo {

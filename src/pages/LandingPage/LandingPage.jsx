@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'; //import React Component
+import React, { useEffect, useRef, useState } from 'react'; //import React Component
 import styles from './LandingPage.module.css';
 import { NavLink } from 'react-router-dom';
 import Galaxy from '../../components/Galaxy/Galaxy';
 import 'vic-ui-library/dist/ui-library.css'
 import { FinalGallery } from 'vic-ui-library'
+import { cloudStore } from '../../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 export function LandingPage() {
     const [isScrolled, setIsScrolled] = useState(false);
+    const input_area_fullScreenRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
     const [visibleSections, setVisibleSections] = useState({
         intro2: false,
         intro3: false,
@@ -22,6 +26,12 @@ export function LandingPage() {
         "/img/Storyboard2.jpeg",
         "/img/Storyboard3.jpg",
     ]);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitMessage, setSubmitMessage] = useState('');
 
     useEffect(() => {
         let ticking = false;
@@ -83,11 +93,77 @@ export function LandingPage() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isScrolled, visibleSections]);
 
+    useEffect(() => {
+        if (isOpen) {
+            input_area_fullScreenRef.current.style.opacity = "1";
+            input_area_fullScreenRef.current.style.pointerEvents = "auto";
+        } else {
+            input_area_fullScreenRef.current.style.opacity = "0";
+            input_area_fullScreenRef.current.style.pointerEvents = "none";
+        }
+    }, [isOpen]);
+
     const topFunction = () => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         setIsScrolled(false);
     };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const submit = async (e) => {
+        e.preventDefault();
+
+        // 验证表单数据
+        if (!formData.name.trim() || !formData.email.trim()) {
+            setSubmitMessage('Please fill in all fields');
+            return;
+        }
+
+        // 验证邮箱格式
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setSubmitMessage('Please enter a valid email address');
+            return;
+        }
+
+        setIsSubmitting(true);
+        setSubmitMessage('');
+
+        try {
+            // 将数据存储到Firebase Firestore
+            const docRef = await addDoc(collection(cloudStore, 'subscribers'), {
+                name: formData.name.trim(),
+                email: formData.email.trim(),
+                subscribeDate: new Date(),
+                timestamp: Date.now()
+            });
+
+            console.log('Document written with ID: ', docRef.id);
+            setSubmitMessage('Successfully subscribed! Thank you for joining us.');
+
+            // 清空表单
+            setFormData({ name: '', email: '' });
+
+            // 3秒后关闭弹窗
+            setTimeout(() => {
+                setIsOpen(false);
+                setSubmitMessage('');
+            }, 3000);
+
+        } catch (error) {
+            console.error('Error adding document: ', error);
+            setSubmitMessage('Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
 
     return (
         <div id={styles.landing}>
@@ -115,7 +191,7 @@ export function LandingPage() {
                     </div>
                     <div className={styles.buttonContainer}>
                         <NavLink to="" onClick={topFunction} className={styles.button}>Explore</NavLink>
-                        <NavLink to="" onClick={topFunction} className={styles.button}>Follow</NavLink>
+                        <div onClick={() => setIsOpen(true)} className={styles.button}>Follow</div>
                     </div>
                 </div>
             </div>
@@ -253,6 +329,57 @@ export function LandingPage() {
                     </div>
                 </div>
             </main>
+
+            <div className={styles.input_area_fullScreen} ref={input_area_fullScreenRef}>
+                <div className={styles.input_area_background} onClick={() => setIsOpen(false)}></div>
+                <div className={styles.input_area_container}>
+                    <div className={styles.close_button} onClick={() => setIsOpen(false)}>X</div>
+                    <div className={styles.input_area_content}>
+                        <label>Stay Updated!</label>
+                        <form onSubmit={submit}>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your name"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                required
+                                disabled={isSubmitting}
+                            />
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                required
+                                disabled={isSubmitting}
+                            />
+                            <button
+                                className={styles.submitButton}
+                                type="submit"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'Submitting...' : 'Subscribe'}
+                            </button>
+                            {submitMessage && (
+                                <div className={styles.submitMessage}
+                                    style={{
+                                        padding: '10px',
+                                        borderRadius: '4px',
+                                        backgroundColor: submitMessage.includes('Successfully') ? '#d4edda' : '#f8d7da',
+                                        color: submitMessage.includes('Successfully') ? '#155724' : '#721c24',
+                                        border: `1px solid ${submitMessage.includes('Successfully') ? '#c3e6cb' : '#f5c6cb'}`
+                                    }}>
+                                    {submitMessage}
+                                </div>
+                            )}
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div>
                 <footer style={{ marginTop: "150px", paddingTop: "80px", backgroundColor: "black" }}>
                 </footer>
